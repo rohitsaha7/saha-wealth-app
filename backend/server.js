@@ -29,13 +29,14 @@ app.get("/", (req, res) => {
 // Submit enquiry
 app.post("/api/enquiries", async (req, res) => {
   try {
-    const { name, phone, email, interest } = req.body;
+    const { name, phone, email, interest, message } = req.body;
 
     const enquiry = new Enquiry({
       name,
       phone,
       email,
       interest,
+      message,
     });
 
     await enquiry.save();

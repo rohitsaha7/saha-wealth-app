@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
 @import "tailwindcss";
 
 html {
@@ -11,8 +12,8 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  background: #f8fafc;
   color: #0f172a;
   overflow-x: hidden;
 }
@@ -21,10 +22,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
 }
+
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }

@@ -1,361 +1,38 @@
-import React, { useState } from "react";
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  TrendingUp, 
-  Wallet,
-  CheckCircle2,
-  ChevronDown,
-  ChevronUp,
-  Award,
-  Users,
-  Briefcase
-} from "lucide-react";
-
-// ==========================================
-// IMPORTING IMAGES
-// ==========================================
-import heroImage from "../assets/images/hero2.png"; 
+import { useState } from "react";
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, ShieldCheck, TrendingUp, Wallet } from "lucide-react";
+import heroImage from "../assets/images/hero2.png";
 import assetplusLogo from "../assets/images/Assetplus.jpeg";
 import policybazaarLogo from "../assets/images/policybazaar.jpg";
 import voltLogo from "../assets/images/volt.png";
 import andromedaLogo from "../assets/images/andromeda.jpg";
 import ruloansLogo from "../assets/images/ruloans.jpg";
 
+const solutions = [
+  { title: "Investments", text: "Grow your wealth with tailored mutual funds, stocks, and fixed deposit strategies designed for your risk profile.", Icon: TrendingUp, tone: "bg-blue-50 text-blue-600", line: "bg-blue-500" },
+  { title: "Insurance", text: "Protect your family's future and your health with comprehensive, customized insurance policies.", Icon: ShieldCheck, tone: "bg-violet-50 text-violet-600", line: "bg-violet-500" },
+  { title: "Loans", text: "Achieve your dreams with hassle-free personal loans, business loans, and loans against mutual funds.", Icon: Wallet, tone: "bg-emerald-50 text-emerald-600", line: "bg-emerald-500" },
+];
+const faqs = [
+  ["What financial services does Prime Wealth offer?", "We offer mutual fund investments, life and health insurance, and loan products including home loans, business loans, and loans against mutual funds."],
+  ["Is my investment safe with Prime Wealth?", "We work with SEBI-registered platforms and industry-leading institutions. Investments are routed through authorized channels for transparency and security."],
+  ["How do I start investing or apply for a loan?", "Request a free consultation. We will understand your goals and guide you through the process step by step."],
+  ["Are there any hidden charges for consultation?", "No. Our initial financial consultation is completely free, so you can make informed decisions with clarity."],
+];
+
 function Home() {
-  // State for FAQ Accordion
   const [openFaq, setOpenFaq] = useState(null);
-
-  const toggleFaq = (index) => {
-    if (openFaq === index) {
-      setOpenFaq(null);
-    } else {
-      setOpenFaq(index);
-    }
-  };
-
-  const faqs = [
-    {
-      question: "What financial services does Prime Wealth offer?",
-      answer: "We offer a comprehensive suite of services including Mutual Fund Investments, Life & Health Insurance, and various loan products (Home Loans, Business Loans, Loan Against Mutual Funds) tailored to your needs."
-    },
-    {
-      question: "Is my investment safe with Prime Wealth?",
-      answer: "Absolutely. We are partnered with SEBI registered platforms and industry-leading institutions like AssetPlus and Policybazaar. Your investments are routed directly through authorized channels, ensuring 100% transparency and security."
-    },
-    {
-      question: "How do I start investing or apply for a loan?",
-      answer: "Starting is simple! You can click on the 'Request Consultation' button to book a free call with our experts. We will understand your financial goals and guide you step-by-step through the entire process."
-    },
-    {
-      question: "Are there any hidden charges for consultation?",
-      answer: "No, our initial financial consultation is completely free of charge. We believe in providing transparent guidance first, so you can make informed decisions about your wealth."
-    }
-  ];
-
-  return (
-    <div className="w-full bg-[#f8fafc] font-sans pt-[150px] pb-0 overflow-hidden flex flex-col items-center">
-      
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-blue-400/20 to-transparent blur-[100px] rounded-full pointer-events-none z-0"></div>
-
-      {/* ================= 1. CENTERED HERO TEXT (WITH MORE INFO & SPACING) ================= */}
-      <section className="w-full max-w-[1100px] mx-auto px-6 text-center relative z-10 flex flex-col items-center">
-        
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 font-bold text-xs tracking-widest px-5 py-2.5 rounded-full uppercase shadow-sm">
-          <span className="relative flex h-2 w-2 mr-1">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-          </span>
-          Welcome to Prime Wealth
-        </div>
-        
-        <br />
-        <br />
-
-        {/* Broad Headline */}
-        <h1 className="text-5xl md:text-7xl lg:text-[76px] font-black text-[#0a192f] leading-[1.1] tracking-tighter">
-          Your Vision, <br />
-          Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Strategy.</span>
-        </h1>
-        
-        <br />
-        <br />
-
-        {/* Subtitle (Detailed Information) */}
-        <p className="text-slate-600 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
-          We simplify complex financial decisions for individuals and families across India. Get expert guidance on high-return investments, seamless loan approvals, and comprehensive insurance policies to secure your family's future and accelerate your financial growth.
-        </p>
-        
-        <br />
-        <br />
-
-        {/* Extended Checkmarks for More Info (Centered Horizontally) */}
-        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 w-full max-w-4xl">
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm md:text-base">
-            <CheckCircle2 size={22} className="text-emerald-500" /> SEBI Registered Partners
-          </div>
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm md:text-base">
-            <CheckCircle2 size={22} className="text-emerald-500" /> Tailored Financial Planning
-          </div>
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm md:text-base">
-            <CheckCircle2 size={22} className="text-emerald-500" /> 100% Secure Process
-          </div>
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm md:text-base">
-            <CheckCircle2 size={22} className="text-emerald-500" /> Dedicated Wealth Advisors
-          </div>
-        </div>
-
-        <br />
-        <br />
-        <br />
-
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full">
-          <a href="/contact" className="w-full sm:w-auto bg-[#0a192f] hover:bg-blue-600 text-white font-extrabold text-lg py-4 px-10 rounded-full flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(10,25,47,0.2)] transition-all transform hover:-translate-y-1">
-            Start Your Journey <ArrowRight size={20} />
-          </a>
-          <a href="/services" className="w-full sm:w-auto bg-white hover:bg-slate-50 border-2 border-slate-200 text-slate-700 hover:text-blue-600 font-extrabold text-lg py-4 px-10 rounded-full flex items-center justify-center gap-3 transition-all shadow-sm">
-            Explore Our Services
-          </a>
-        </div>
-        
-        <br />
-        <br />
-        
-        {/* Quick Stats Row (Extra Info) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl border-y border-slate-200 py-6">
-          <div className="flex flex-col items-center">
-            <h4 className="text-2xl font-black text-[#0a192f]">10M+</h4>
-            <p className="text-sm font-bold text-slate-500">Happy Families</p>
-          </div>
-          <div className="flex flex-col items-center md:border-x border-slate-200">
-            <h4 className="text-2xl font-black text-blue-600">50+</h4>
-            <p className="text-sm font-bold text-slate-500">Trusted Partners</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <h4 className="text-2xl font-black text-emerald-600">₹500Cr+</h4>
-            <p className="text-sm font-bold text-slate-500">Wealth Managed</p>
-          </div>
-        </div>
-
-      </section>
-
-      <br />
-      <br />
-      <br />
-
-      {/* ================= 2. CINEMATIC CENTER IMAGE ================= */}
-      <section className="w-full max-w-[1200px] mx-auto px-6 relative z-20">
-        <div className="relative w-full h-[400px] md:h-[600px] rounded-[2.5rem] p-3 md:p-4 bg-white/50 backdrop-blur-sm shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-white">
-          <img 
-            src={heroImage} 
-            alt="Family securing financial future" 
-            className="w-full h-full object-cover rounded-[2rem] shadow-inner"
-            style={{ objectPosition: "center 20%" }} 
-          />
-        </div>
-      </section>
-
-      <br />
-      <br />
-      <br />
-
-      {/* ================= 3. THE TRUST STRIP (Visible & Grayscale) ================= */}
-      <section className="w-full border-y border-slate-200/60 bg-white py-12">
-        <div className="max-w-[1300px] mx-auto px-6 flex flex-col items-center">
-          <p className="text-sm font-bold text-slate-400 tracking-widest uppercase text-center">Trusted By & Partnered With</p>
-          
-          <br />
-          <br />
-
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-20 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-            <img src={assetplusLogo} alt="AssetPlus" className="h-8 md:h-10 lg:h-12 object-contain mix-blend-multiply" />
-            <img src={policybazaarLogo} alt="Policybazaar" className="h-8 md:h-10 lg:h-12 object-contain mix-blend-multiply" />
-            <img src={voltLogo} alt="Volt Money" className="h-8 md:h-10 lg:h-12 object-contain mix-blend-multiply" />
-            <img src={andromedaLogo} alt="Andromeda" className="h-8 md:h-10 lg:h-12 object-contain mix-blend-multiply" />
-            <img src={ruloansLogo} alt="Ruloans" className="h-8 md:h-10 lg:h-12 object-contain mix-blend-multiply" />
-          </div>
-        </div>
-      </section>
-
-      <br />
-      <br />
-      <br />
-
-      {/* ================= 4. SOLUTIONS GRID (Strictly Left-Aligned) ================= */}
-      <section className="w-full max-w-[1300px] mx-auto px-6 lg:px-12 flex flex-col items-center">
-        
-        <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a192f] tracking-tight">Our Core <span className="text-blue-600">Solutions</span></h2>
-          <br />
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">Comprehensive financial services designed to help you build, protect, and leverage your wealth.</p>
-        </div>
-
-        <br />
-        <br />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
-          
-          {/* Card 1: Investments */}
-          <div className="bg-white rounded-[2rem] p-10 flex flex-col items-start text-left shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_20px_40px_rgba(37,99,235,0.1)] transition-all duration-300 group relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-blue-500"></div>
-            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <TrendingUp size={32} />
-            </div>
-            
-            <br />
-            
-            <h3 className="text-2xl font-bold text-slate-900">Investments</h3>
-            
-            <br />
-            
-            <p className="text-slate-500 leading-relaxed">
-              Grow your wealth with tailored mutual funds, stocks, and fixed deposit strategies designed for your risk profile.
-            </p>
-            
-            <br />
-            <br />
-
-            <a href="/services" className="flex items-center gap-2 text-blue-600 font-bold hover:gap-4 transition-all mt-auto">
-              Learn More <ArrowRight size={18} />
-            </a>
-          </div>
-
-          {/* Card 2: Insurance */}
-          <div className="bg-white rounded-[2rem] p-10 flex flex-col items-start text-left shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_20px_40px_rgba(147,51,234,0.1)] transition-all duration-300 group relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-purple-500"></div>
-            <div className="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <ShieldCheck size={32} />
-            </div>
-            
-            <br />
-
-            <h3 className="text-2xl font-bold text-slate-900">Insurance</h3>
-            
-            <br />
-
-            <p className="text-slate-500 leading-relaxed">
-              Protect your family's future and your health with comprehensive, customized insurance policies.
-            </p>
-            
-            <br />
-            <br />
-
-            <a href="/services" className="flex items-center gap-2 text-purple-600 font-bold hover:gap-4 transition-all mt-auto">
-              Learn More <ArrowRight size={18} />
-            </a>
-          </div>
-
-          {/* Card 3: Loans */}
-          <div className="bg-white rounded-[2rem] p-10 flex flex-col items-start text-left shadow-[0_5px_20px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_20px_40px_rgba(16,185,129,0.1)] transition-all duration-300 group relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-emerald-500"></div>
-            <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Wallet size={32} />
-            </div>
-            
-            <br />
-
-            <h3 className="text-2xl font-bold text-slate-900">Loans</h3>
-            
-            <br />
-
-            <p className="text-slate-500 leading-relaxed">
-              Achieve your dreams instantly with hassle-free personal loans, business loans, and loans against mutual funds.
-            </p>
-            
-            <br />
-            <br />
-
-            <a href="/services" className="flex items-center gap-2 text-emerald-600 font-bold hover:gap-4 transition-all mt-auto">
-              Learn More <ArrowRight size={18} />
-            </a>
-          </div>
-
-        </div>
-      </section>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
-      {/* ================= 5. FAQ SECTION (Left-Aligned Texts) ================= */}
-      <section className="w-full max-w-[900px] mx-auto px-6 lg:px-12">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a192f]">Frequently Asked Questions</h2>
-          <br />
-          <p className="text-slate-500 text-lg">Got questions? We've got answers.</p>
-        </div>
-
-        <br />
-        <br />
-
-        <div className="flex flex-col gap-5 w-full">
-          {faqs.map((faq, index) => (
-            <div 
-              key={index} 
-              className={`bg-white border rounded-2xl transition-all duration-300 ${openFaq === index ? 'border-blue-500 shadow-md' : 'border-slate-200 hover:border-slate-300'}`}
-            >
-              <button 
-                onClick={() => toggleFaq(index)}
-                className="w-full px-6 py-6 flex items-center justify-between text-left font-bold text-slate-800 focus:outline-none"
-              >
-                <span className="text-lg pr-4">{faq.question}</span>
-                {openFaq === index ? <ChevronUp className="text-blue-600 shrink-0" /> : <ChevronDown className="text-slate-400 shrink-0" />}
-              </button>
-              
-              <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out px-6 text-left ${openFaq === index ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
-              >
-                <p className="text-slate-600 leading-relaxed border-t border-slate-100 pt-5">
-                  {faq.answer}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
-      {/* ================= 6. FINAL CTA BANNER ================= */}
-      <section className="w-full max-w-[1300px] mx-auto px-6 lg:px-12 mb-20">
-        <div className="w-full bg-gradient-to-br from-[#160a4c] to-[#0e3b9c] rounded-[2.5rem] p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between text-center md:text-left relative overflow-hidden shadow-2xl">
-          
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-bl-full pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-tr-full pointer-events-none"></div>
-          
-          <div className="relative z-10 max-w-xl md:mb-0">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-              Ready to take control of your <span className="text-[#00e1ff]">finances?</span>
-            </h2>
-            <br />
-            <p className="text-blue-100/90 text-lg">
-              Book a free consultation with our experts today and start your journey towards financial freedom.
-            </p>
-          </div>
-
-          <div className="relative z-10 shrink-0 mt-10 md:mt-0">
-            <a 
-              href="/contact"
-              className="bg-white text-[#160a4c] hover:bg-slate-50 font-extrabold text-xl py-5 px-10 rounded-full transition-all shadow-xl tracking-wide flex items-center gap-3 group"
-            >
-              Request Consultation <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-        </div>
-      </section>
-
-    </div>
-  );
+  return <main className="overflow-hidden bg-[#f8fafc]">
+    <section className="relative isolate px-4 pb-12 pt-14 sm:px-6 sm:pt-20 lg:px-8 lg:pb-20"><div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 via-blue-50/30 to-transparent" />
+      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:gap-14"><div className="max-w-2xl"><p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3.5 py-2 text-xs font-extrabold tracking-[.14em] text-blue-700 uppercase shadow-sm"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Your financial partner</p><h1 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">Your vision. <span className="text-blue-600">Our strategy.</span></h1><p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">We simplify financial decisions for individuals and families across India — from investments and insurance to seamless loan approvals.</p>
+        <div className="mt-6 grid gap-2 text-sm font-bold text-slate-700 sm:grid-cols-2">{["SEBI Registered Partners", "Tailored Financial Planning", "100% Secure Process", "Dedicated Wealth Advisors"].map((item) => <span key={item} className="flex items-center gap-2"><CheckCircle2 size={18} className="text-emerald-500" />{item}</span>)}</div>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 font-extrabold text-white shadow-lg shadow-slate-900/15 transition hover:bg-blue-700">Start your journey <ArrowRight size={18} /></a><a href="/services" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 font-extrabold text-slate-800 transition hover:border-blue-200 hover:text-blue-700">Explore services</a></div>
+        <div className="mt-9 grid grid-cols-3 divide-x divide-slate-200 rounded-2xl border border-slate-200 bg-white/70 p-4 text-center shadow-sm"><div><strong className="block text-lg text-slate-950">10M+</strong><span className="text-xs font-semibold text-slate-500">Happy families</span></div><div><strong className="block text-lg text-blue-600">50+</strong><span className="text-xs font-semibold text-slate-500">Partners</span></div><div><strong className="block text-lg text-emerald-600">₹500Cr+</strong><span className="text-xs font-semibold text-slate-500">Wealth managed</span></div></div>
+      </div><div className="relative mx-auto w-full max-w-xl"><div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-blue-600/15 blur-2xl" /><img src={heroImage} alt="Family securing their financial future" className="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl shadow-blue-950/15" /><div className="absolute -bottom-4 left-4 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-lg backdrop-blur"><p className="text-xs font-bold text-slate-500">Guidance built around you</p><p className="mt-0.5 text-sm font-extrabold text-slate-950">Secure. Transparent. Personal.</p></div></div></div>
+    </section>
+    <section className="border-y border-slate-200 bg-white px-4 py-8 sm:px-6 lg:px-8"><div className="mx-auto max-w-7xl"><p className="text-center text-[11px] font-extrabold tracking-[.16em] text-slate-400 uppercase">Trusted by & partnered with</p><div className="mt-6 flex flex-wrap items-center justify-center gap-x-9 gap-y-5 grayscale opacity-70"><img src={assetplusLogo} alt="AssetPlus" className="h-7 object-contain sm:h-8" /><img src={policybazaarLogo} alt="Policybazaar" className="h-7 object-contain sm:h-8" /><img src={voltLogo} alt="Volt Money" className="h-7 object-contain sm:h-8" /><img src={andromedaLogo} alt="Andromeda" className="h-7 object-contain sm:h-8" /><img src={ruloansLogo} alt="Ruloans" className="h-7 object-contain sm:h-8" /></div></div></section>
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"><div className="max-w-2xl"><p className="text-xs font-extrabold tracking-[.16em] text-blue-700 uppercase">Our core solutions</p><h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Build, protect and access your wealth.</h2><p className="mt-3 text-slate-600">Comprehensive financial services designed around your goals.</p></div><div className="mt-8 grid gap-4 md:grid-cols-3">{solutions.map(({ title, text, Icon, tone, line }) => <article key={title} className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"><span className={`absolute inset-x-0 top-0 h-1 ${line}`} /><span className={`grid h-12 w-12 place-items-center rounded-xl ${tone}`}><Icon size={24} /></span><h3 className="mt-5 text-xl font-extrabold text-slate-950">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{text}</p><a href="/services" className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-blue-700">Learn more <ArrowRight size={16} /></a></article>)}</div></section>
+    <section className="mx-auto grid max-w-7xl gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:px-8 lg:py-16"><div><p className="text-xs font-extrabold tracking-[.16em] text-blue-700 uppercase">FAQs</p><h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">Straight answers, before you start.</h2><p className="mt-4 leading-7 text-slate-600">If you have a more specific question, our advisers are a call away.</p><a href="/contact" className="mt-6 inline-flex items-center gap-2 font-extrabold text-blue-700">Talk to an adviser <ArrowRight size={17} /></a></div><div className="grid gap-3">{faqs.map(([question, answer], index) => <div key={question} className="rounded-2xl border border-slate-200 bg-white"><button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-extrabold text-slate-900 sm:text-base"><span>{question}</span>{openFaq === index ? <ChevronUp className="shrink-0 text-blue-600" /> : <ChevronDown className="shrink-0 text-slate-400" />}</button>{openFaq === index && <p className="border-t border-slate-100 px-5 py-4 text-sm leading-6 text-slate-600">{answer}</p>}</div>)}</div></section>
+    <section className="mx-auto max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8 lg:pb-20"><div className="relative overflow-hidden rounded-3xl bg-slate-950 px-6 py-10 text-white sm:px-10 lg:flex lg:items-center lg:justify-between"><div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-600/30 blur-3xl" /><div className="relative max-w-2xl"><p className="text-xs font-extrabold tracking-[.16em] text-blue-200 uppercase">Free consultation</p><h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to take control of your finances?</h2><p className="mt-3 text-slate-300">Start your journey towards financial freedom with a clear plan.</p></div><a href="/contact" className="relative mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 font-extrabold text-slate-950 transition hover:bg-blue-50 lg:mt-0">Request consultation <ArrowRight size={18} /></a></div></section>
+  </main>;
 }
-
 export default Home;

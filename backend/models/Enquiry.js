@@ -22,6 +22,13 @@ const enquirySchema = new mongoose.Schema(
     interest: {
       type: String,
       required: true,
+      trim: true,
+    },
+
+    message: {
+      type: String,
+      trim: true,
+      maxlength: 2000,
     },
   },
   {
