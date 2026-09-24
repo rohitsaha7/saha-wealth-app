@@ -2,8 +2,10 @@ import { useState } from "react";
 import { ArrowRight, CheckCircle2, Headphones, Mail, MessageSquare, Phone, Send, User } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
+// Ensure trailing slashes are trimmed and default to render backend URL
+const envUrl = import.meta.env.VITE_API_BASE_URL ? import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, "") : "";
+const apiBaseUrl = envUrl || "https://sahatra-backend-yaew.onrender.com";
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://sahatra-backend-yaew.onrender.com";
 const emptyForm = { name: "", phone: "", email: "", interest: "", message: "" };
 
 function Field({ icon: Icon, children }) {
@@ -18,15 +20,31 @@ function Contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true); setStatus({ type: "", message: "" });
+    setIsSubmitting(true); 
+    setStatus({ type: "", message: "" });
+
     try {
-      const response = await fetch(`${apiBaseUrl}/api/enquiries`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) });
+      const response = await fetch(`${apiBaseUrl}/api/enquiries`, { 
+        method: "POST", 
+        headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify(formData) 
+      });
+
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server returned HTML instead of JSON. Render server might be starting up. Please try again in 10 seconds.");
+      }
+
       const data = await response.json();
       if (!response.ok || !data.success) throw new Error(data.message || "Unable to send your enquiry.");
-      setFormData(emptyForm); setStatus({ type: "success", message: "Thanks — your enquiry is on its way. We’ll be in touch shortly." });
+
+      setFormData(emptyForm); 
+      setStatus({ type: "success", message: "Thanks — your enquiry is on its way. We’ll be in touch shortly." });
     } catch (error) {
       setStatus({ type: "error", message: error.message || "Unable to connect right now. Please call us instead." });
-    } finally { setIsSubmitting(false); }
+    } finally { 
+      setIsSubmitting(false); 
+    }
   };
 
   const channels = [
