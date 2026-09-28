@@ -1,31 +1,93 @@
-# React + Vite
+# SAHATRA
 
-## Live contact-form backend on Vercel
+**plan protect grow**
 
-The contact form is deployed as a Vercel Serverless Function at `POST /api/enquiries`.
-It stores enquiries in MongoDB and shares the same domain as the website, so no production API URL is needed.
+Official website and lead-management system for SAHATRA (formerly Prime Wealth), a financial-solutions business based in Lumding & Guwahati, Assam. It covers investment, insurance, loans and financial planning.
 
-Before deploying, set the following environment variable in **Vercel → Project → Settings → Environment Variables** for Production (and Preview if desired):
+Live site: [your Vercel URL]
+
+## Features
+
+- Responsive public website (no login needed for customers)
+- Enquiry form: Investment / Insurance / Loans / All Above
+- Enquiries saved to MongoDB
+- [Planned] Simple admin/CRM view for follow-ups
+- [Planned] Insurance expiry reminders
+
+## Tech Stack
+
+**Frontend:** React, Vite, Tailwind CSS, React Router, Lucide icons
+**Backend:** Node.js, Express.js
+**Database:** MongoDB with Mongoose
+**Deployment:** Vercel (frontend), Render (backend)
+
+## Project Structure
 
 ```
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority
+sahatra/
+├── frontend/     # React + Vite app
+└── backend/      # Express API
 ```
 
-Set the Vercel project's Root Directory to `saha-wealth-app`. Then deploy from the connected GitHub repository or run `vercel --prod` from this directory. After deployment, confirm the backend is online at `https://your-domain.vercel.app/api/health` and submit a test enquiry from the Contact page.
+## Getting Started
 
-For local Vite development, the form continues to call `http://localhost:5000`. To point it to another API locally, put `VITE_API_BASE_URL=https://your-api.example.com` in a local `.env` file.
+### Prerequisites
+- Node.js 18+
+- A MongoDB connection string (MongoDB Atlas free tier works)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 1. Clone the repo
+```bash
+git clone [your repo URL]
+cd sahatra
+```
 
-Currently, two official plugins are available:
+### 2. Backend
+```bash
+cd backend
+npm install
+```
+Create a `.env` file (see `.env.example`):
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+FRONTEND_URL=http://localhost:5173
+```
+Run:
+```bash
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 3. Frontend
+```bash
+cd frontend
+npm install
+```
+Create a `.env` file:
+```
+VITE_API_URL=http://localhost:5000
+```
+Run:
+```bash
+npm run dev
+```
 
-## React Compiler
+## API Endpoints
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | /api/leads | Submit a new enquiry |
+| GET | /api/leads | List enquiries (admin only) |
 
-## Expanding the ESLint configuration
+## Deployment
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Frontend: deployed on Vercel, with `VITE_API_URL` set to the backend URL
+- Backend: deployed on Render, with `MONGO_URI` and `FRONTEND_URL` set as environment variables
+
+## Contact
+
+Phone / WhatsApp: 8638499045
+Email: wealthgate6@gmail.com
+
+## License
+
+All rights reserved. © SAHATRA
